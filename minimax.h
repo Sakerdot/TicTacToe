@@ -1,6 +1,9 @@
 #pragma once
 
 #include <array>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
 #include "board.h"
 
 // @0 score, @1 row, @2 column

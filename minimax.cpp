@@ -4,7 +4,7 @@
 // currScore is lower than prevScore if it's minimizing.
 bool switchMove(bool minimax, short currScore, short prevScore)
 {
-    return (minimax && currScore > prevScore) || (!minimax && currScore < prevScore);
+    return (minimax && currScore >= prevScore) || (!minimax && currScore <= prevScore);
 }
 
 // Returns the position of the next best move along with the score of said move.
@@ -12,6 +12,8 @@ aiMove nextMove(const board &currentBoard, short length, bool minimax)
 {
     aiMove result;
     bool first = true;
+    
+    std::vector<aiMove> candidates;
     
     for (short i = 0; i < 3; ++i)
     {
@@ -38,11 +40,27 @@ aiMove nextMove(const board &currentBoard, short length, bool minimax)
                 
                 if (first || switchMove(minimax, scoreAtTile, result[0]))
                 {
-                    result = { scoreAtTile, i, j };
+                    aiMove newMove = { scoreAtTile, i, j };
+                    
+                    if (scoreAtTile != result[0])
+                    {
+                        candidates.clear();
+                    }
+                    
                     first = false;
+                    candidates.push_back(newMove);
+                    result = newMove;
                 }
             }
         }
+    }
+    
+    short candidatesSize = candidates.size();
+    
+    if (candidatesSize > 1)
+    {
+        srand(time(NULL));
+        result = candidates[rand() % candidatesSize];
     }
     
     return result;
