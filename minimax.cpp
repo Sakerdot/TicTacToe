@@ -4,7 +4,7 @@
 // currScore is lower than prevScore if it's minimizing.
 bool switchMove(bool minimax, short currScore, short prevScore)
 {
-    return (minimax && currScore >= prevScore) || (!minimax && currScore <= prevScore);
+    return (minimax && currScore > prevScore) || (!minimax && currScore < prevScore);
 }
 
 // Returns the position of the next best move along with the score of said move.

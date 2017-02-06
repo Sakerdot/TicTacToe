@@ -1,8 +1,6 @@
 #pragma once
 
 #include <array>
-#include <vector>
-#include <random>
 #include "board.h"
 
 // @0 score, @1 row, @2 column
