@@ -8,7 +8,7 @@ board::board(short starter)
         row.fill(0);
     }
     
-    m_turn = starter;
+    m_xTurn = starter - 1;
 }
 
 // Displays the TicTacToe board.
@@ -44,7 +44,7 @@ void board::displayBoard() const
 // Makes a move for whomever turn it is and returns true if he has won.
 bool board::makeMove(short row, short column)
 {
-    m_board[row][column] = m_turn;
+    m_board[row][column] = m_xTurn + 1;
     
     return checkWin();
 }
@@ -58,7 +58,7 @@ bool board::isEmpty(short row, short column) const
 // Returns whose turns it is.
 short board::currentPlayer() const
 {
-    return m_turn;
+    return m_xTurn + 1;
 }
 
 // Checks if whomever turn it is has won yet, changes turn and returns true if match is won.
@@ -94,18 +94,7 @@ bool board::checkWin()
         win = true;
     }
     
-    if (m_turn == 1)
-    {
-        m_turn = 2;
-    }
-    else if (m_turn == 2)
-    {
-        m_turn = 1;
-    }
-    else
-    {
-        cerr << "Error, unknown value for turn" << endl;
-    }
+    m_xTurn = !m_xTurn;
     
     return win;
 }

@@ -31,7 +31,7 @@ private:
     // 0 will represent empty space, 1 will be X's and 2 will be O's.
     typedef std::array<std::array<short, 3>, 3> Board;
     
-    short m_turn;
+    short m_xTurn;
     Board m_board;
 };
 
