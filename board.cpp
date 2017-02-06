@@ -76,7 +76,7 @@ bool board::checkWin()
     }
     
     // Checks for column win condition
-    for (short j = 0; j < 2; ++j)
+    for (short j = 0; j < 3; ++j)
     {
         if (m_board[0][j] == m_board[1][j] && m_board[1][j] == m_board[2][j] && m_board[0][j] != 0)
         {
